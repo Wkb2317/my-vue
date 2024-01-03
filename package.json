@@ -1,0 +1,23 @@
+{
+  "name": "my-vue",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "rollup -c",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-typescript": "^11.1.5",
+    "@types/node": "^20.10.6",
+    "prettier": "^3.1.1",
+    "rollup": "^4.9.2",
+    "tslib": "^2.6.2"
+  },
+  "type": "module"
+}
