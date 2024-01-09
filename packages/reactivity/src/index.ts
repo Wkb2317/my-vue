@@ -1,1 +1,2 @@
-let a = 'asd'
+export { effect } from './effect'
+export { reactive } from './reactive'
