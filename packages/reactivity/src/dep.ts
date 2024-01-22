@@ -1,8 +1,8 @@
 import { ReactiveEffect } from './effect'
 
-export type Dep = Map<ReactiveEffect, number>
+export type Dep = Set<ReactiveEffect>
 
 export function createDep(): Dep {
-  const dep: Dep = new Map()
+  const dep: Dep = new Set()
   return dep
 }

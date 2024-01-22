@@ -4,11 +4,11 @@ import { activeEffect, trackEffect, triggerEffects } from './effect'
 /**
  * 使用WeakMap储存对象中的依赖，存储格式如下
  * weakMap: key    value
- *       target    Map
- * Map:    key      value
+ *       target    depsMap
+ * depsMap:    key      value
  *         key      Dep
- * Dep:  key             value
- *      reactiveEffect    number
+ * Dep: Set
+ *      reactiveEffect
  */
 const targetMap = new WeakMap<object, Map<String, Dep>>()
 

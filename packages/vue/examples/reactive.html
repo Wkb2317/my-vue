@@ -6,7 +6,10 @@
   <title>reactive</title>
 </head>
 <body>
-  <div id="app"></div>
+  <div id="app">
+    <p id="p1"></p>
+    <p id="p2"></p>
+  </div>
   <script src="../dist/vue.js"></script>
 
   <script>
@@ -18,7 +21,11 @@
     })
 
     effect(() => {
-      document.querySelector('#app').innerHTML = info.name
+      document.querySelector('#p1').innerHTML = info.name
+    })
+
+    effect(() => {
+      document.querySelector('#p2').innerHTML = info.name
     })
 
     setTimeout(() => {

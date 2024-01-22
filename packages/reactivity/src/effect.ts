@@ -22,7 +22,7 @@ export class ReactiveEffect {
 }
 
 export function trackEffect(activeEffect: ReactiveEffect, dep: Dep) {
-  dep.set(activeEffect, activeEffect.deps.length)
+  dep.add(activeEffect)
   const oldDep = activeEffect.deps[activeEffect.deps.length - 1]
   if (oldDep !== dep) {
     activeEffect.deps.push(dep)
