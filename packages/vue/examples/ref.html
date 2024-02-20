@@ -15,16 +15,14 @@
   <script>
     const { ref,effect } = Vue
 
-    const info = ref({
-      name: 'wkb',
-    })
+    const info = ref(12)
 
     effect(() => {
-      document.querySelector('#p1').innerHTML = info.value.name
+      document.querySelector('#p1').innerHTML = info.value
     })
 
     setTimeout(() => {
-        info.value.name = 'www'
+        info.value = 22
     }, 2000);
   </script>
 </body>
