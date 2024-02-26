@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>reactive</title>
+</head>
+<body>
+  <div id="app">
+    <p id="p1"></p>
+  </div>
+  <script src="../dist/vue.js"></script>
+
+  <script>
+    const { ref, effect, computed } = Vue
+
+    const price = ref(10)
+
+    const total = computed(() => {
+      return price.value * 3
+    })
+
+    effect(() => {
+      document.querySelector('#p1').innerHTML = total.value
+    })
+
+    setTimeout(() => {
+      price.value = 2 
+    }, 2000)
+  </script>
+</body>
+</html>

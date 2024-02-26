@@ -27,7 +27,7 @@ function createRef(value: any, isShallow: boolean) {
   return new RefImpl(value, isShallow)
 }
 
-function trackRefValue(ref: RefImpl) {
+export function trackRefValue(ref: RefImpl) {
   if (!ref.dep) {
     ref.dep = createDep()
   }
@@ -36,13 +36,13 @@ function trackRefValue(ref: RefImpl) {
   }
 }
 
-function triggerRefValue(ref: RefImpl) {
+export function triggerRefValue(ref: RefImpl) {
   if (ref.dep) {
     triggerEffects(ref.dep)
   }
 }
 
-class RefImpl {
+export class RefImpl {
   public __v_isShallow: boolean
   public dep: undefined | Dep
   public __v_isRef: boolean
