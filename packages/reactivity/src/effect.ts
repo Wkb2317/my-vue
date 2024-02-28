@@ -5,10 +5,15 @@ export let activeEffect: ReactiveEffect | null = null
 
 interface ReactiveEffectOptions {
   lazy?: boolean
+  scheduler?: Function
 }
 
 export function effect(fn: () => any, options?: ReactiveEffectOptions) {
   const _effect = new ReactiveEffect(fn)
+
+  if (options && options.scheduler) {
+    Object.assign(_effect, options)
+  }
 
   if (!options || !options.lazy) {
     _effect.run()
