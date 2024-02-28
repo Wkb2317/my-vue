@@ -3,9 +3,16 @@ import { Dep } from './dep'
 
 export let activeEffect: ReactiveEffect | null = null
 
-export function effect(fn: () => any) {
+interface ReactiveEffectOptions {
+  lazy?: boolean
+}
+
+export function effect(fn: () => any, options?: ReactiveEffectOptions) {
   const _effect = new ReactiveEffect(fn)
-  _effect.run()
+
+  if (!options || !options.lazy) {
+    _effect.run()
+  }
 }
 
 export class ReactiveEffect {
