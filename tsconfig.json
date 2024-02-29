@@ -6,6 +6,7 @@
     "target": "es2016",
     "newLine": "LF",
     "useDefineForClassFields": false,
+    "suppressImplicitAnyIndexErrors": true,
     "module": "esnext",
     "moduleResolution": "bundler",
     "allowJs": true,

@@ -7,7 +7,7 @@ export function ref(value: any) {
   return createRef(value, false)
 }
 
-function isRef(value: any) {
+export function isRef(value: any) {
   return !!(value && value.__v_isRef)
 }
 

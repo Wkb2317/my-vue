@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="../dist/vue.js"></script>
+
+    <script>
+      const { reactive, effect, watch } = Vue
+
+      const info = reactive({
+        name: 'wkb',
+      })
+
+      watch(
+        () => info.name,
+        (newValue, oldValue) => {
+          console.log('newValue', newValue)
+        },
+        {
+          immediate: true,
+        },
+      )
+
+      setTimeout(() => {
+        info.name = 'www'
+      }, 2000)
+    </script>
+  </body>
+</html>

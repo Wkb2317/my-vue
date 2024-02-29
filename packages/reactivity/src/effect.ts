@@ -24,8 +24,8 @@ export class ReactiveEffect {
   deps: Dep[] = []
 
   constructor(
-    public fn: () => any,
-    public scheduler?: () => any,
+    public fn: Function,
+    public scheduler?: Function,
     public computed?: ComputedRefImpl,
   ) {}
 
