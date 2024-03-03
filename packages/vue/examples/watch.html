@@ -16,12 +16,13 @@
       })
 
       watch(
-        () => info.name,
+        info,
         (newValue, oldValue) => {
           console.log('newValue', newValue)
         },
         {
           immediate: true,
+          deep: true,
         },
       )
 

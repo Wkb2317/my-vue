@@ -2,7 +2,7 @@ import { hasChanged, isObject } from './../../shared/src/index'
 import { isFunction } from '@vue/shared'
 import { isReactive } from 'packages/reactivity/src/reactive'
 import { isRef } from 'packages/reactivity/src/ref'
-import { queuePreFlushCb } from '.'
+import { queuePreFlushCb } from './scheduler'
 import { ReactiveEffect } from 'packages/reactivity/src/effect'
 
 interface WatchOptions {
@@ -49,8 +49,7 @@ function doWatch(
     }
   }
 
-  const scheduler = queuePreFlushCb(job)
-
+  const scheduler = () => queuePreFlushCb(job)
   const effect = new ReactiveEffect(getter, scheduler!)
 
   if (cb) {
