@@ -6,3 +6,5 @@ export const hasChanged = (value: any, oldValue: any): boolean =>
   !Object.is(value, oldValue)
 
 export const isFunction = (fn: any): boolean => typeof fn === 'function'
+
+export const isString = (value: any) => typeof value === 'string'
