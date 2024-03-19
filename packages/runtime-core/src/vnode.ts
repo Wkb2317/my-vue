@@ -9,6 +9,10 @@ export interface VNode {
   shapeFlag: number
 }
 
+export const Text = Symbol('Text')
+export const Coment = Symbol('Coment')
+export const Fragment = Symbol('Fragment')
+
 export function isVNode(value: any) {
   return value ? value.__v_isVNode === true : false
 }
@@ -62,6 +66,7 @@ function normalizeChildren(vnode: VNode, children: any) {
     type = ShapeFlags.SLOTS_CHILDREN
   } else {
     children = String(children)
+    type = ShapeFlags.TEXT_CHILDREN
   }
 
   vnode.children = children
