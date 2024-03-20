@@ -21,7 +21,10 @@ export function createVNode(type: any, props: any, children: any): VNode {
   let shapeFlag
 
   if (props) {
-    // TODO 对props进行优化
+    const { class: klass, style } = props
+    if (klass) {
+      props.class = normalizeClass(klass)
+    }
   }
 
   shapeFlag = isString(type)
@@ -71,4 +74,29 @@ function normalizeChildren(vnode: VNode, children: any) {
 
   vnode.children = children
   vnode.shapeFlag |= type
+}
+
+/**
+ * 处理 class
+ * @param value
+ */
+function normalizeClass(value: any) {
+  let res = ''
+  if (isString(value)) {
+    res = value
+    return res
+  } else if (isArray(value)) {
+    for (let item in value) {
+      const normalized = normalizeClass(item)
+      res += ' ' + normalized
+    }
+  } else if (isObject(value)) {
+    for (let key in value) {
+      if (value[key]) {
+        res += ' ' + value[key]
+      }
+    }
+  }
+
+  return res.trim()
 }
