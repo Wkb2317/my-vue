@@ -1,7 +1,7 @@
 import { isON } from '@vue/shared'
 import { patchClass } from './modules/class'
 
-export function patchProps(
+export function patchProp(
   el: Element,
   key: string,
   prevValue: any,

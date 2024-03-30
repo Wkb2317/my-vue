@@ -10,3 +10,5 @@ export const isFunction = (fn: any): boolean => typeof fn === 'function'
 export const isString = (value: any) => typeof value === 'string'
 
 export const isON = (key: string) => key.startsWith('on')
+
+export const extend = Object.assign
