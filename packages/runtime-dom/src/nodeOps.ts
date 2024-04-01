@@ -11,4 +11,10 @@ export const nodeOps = {
   setElementText: (node: Element, text: string) => {
     node.textContent = text
   },
+
+  remove: (el: Element) => {
+    if (el.parentNode) {
+      el.parentNode.removeChild(el)
+    }
+  },
 }

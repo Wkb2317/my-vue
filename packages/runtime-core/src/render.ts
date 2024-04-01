@@ -1,11 +1,12 @@
 import { ShapeFlags } from 'packages/shared/src/shapeFlags'
-import { Coment, Fragment, Text, VNode } from './vnode'
+import { Coment, Fragment, Text, VNode, isSameVnodeType } from './vnode'
 
 interface IRenderOptions {
   patchProp: (el: Element, key: string, prevValue: any, nextValue: any) => void
   setElementText: (node: Element, text: string) => void
   insert: (el: Element, parent: Element, anchor?: Element) => void
   createElement: (type: string) => Element
+  remove: (el: Element) => void
 }
 
 export function createRender(options: IRenderOptions) {
@@ -13,10 +14,16 @@ export function createRender(options: IRenderOptions) {
 }
 
 function baseCreateRender(options: IRenderOptions) {
-  const { createElement, patchProp, insert, setElementText } = options
+  const {
+    createElement,
+    patchProp,
+    insert,
+    setElementText,
+    remove: hostRemove,
+  } = options
 
   const processElement = (
-    oldVnode: VNode,
+    oldVnode: VNode | null,
     newVnode: VNode,
     container: Element,
     anchor: any,
@@ -151,14 +158,25 @@ function baseCreateRender(options: IRenderOptions) {
     }
   }
 
+  const unmount = (el: Element) => {
+    hostRemove(el)
+  }
+
   const patch = (
-    oldVnode: VNode,
+    oldVnode: VNode | null,
     newVnode: VNode,
     container: any,
     anchor = null,
   ) => {
     if (oldVnode === newVnode) return
 
+    // 旧节点与新节点不是同一个类型
+    if (oldVnode && !isSameVnodeType(oldVnode, newVnode)) {
+      unmount(oldVnode.el!)
+      oldVnode = null
+    }
+
+    // 旧节点和新节点是同一个类型
     switch (newVnode.type) {
       case Text:
         break
