@@ -158,8 +158,8 @@ function baseCreateRender(options: IRenderOptions) {
     }
   }
 
-  const unmount = (el: Element) => {
-    hostRemove(el)
+  const unmount = (vnode: VNode) => {
+    hostRemove(vnode.el!)
   }
 
   const patch = (
@@ -172,7 +172,7 @@ function baseCreateRender(options: IRenderOptions) {
 
     // 旧节点与新节点不是同一个类型
     if (oldVnode && !isSameVnodeType(oldVnode, newVnode)) {
-      unmount(oldVnode.el!)
+      unmount(oldVnode)
       oldVnode = null
     }
 
@@ -197,6 +197,9 @@ function baseCreateRender(options: IRenderOptions) {
   const render = (vnode: VNode, container: any) => {
     if (vnode === null) {
       //TODO 卸载操作
+      if (container._vnode) {
+        unmount(container._vnode)
+      }
     } else {
       // patch操作
       patch(container._vnode || null, vnode, container)
